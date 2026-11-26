@@ -4,63 +4,188 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jornal Fictício - Notícia</title>
+    <title>AutoDiagnóstico | Assistente Automotivo</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>📰 Jornal Fictício</h1>
-        <p>Todo o conteúdo desta página é fictício e criado apenas para fins de demonstração.</p>
-    </header>
+<header class="topbar">
+    <div class="logo">
+        <div class="logo-icon">AD</div>
+        <div>
+            <h1>AutoDiagnóstico</h1>
+            <span>INTELIGÊNCIA AUTOMOTIVA</span>
+        </div>
+    </div>
+    <div class="header-status">
+        <span class="status-dot"></span>
+        Sistema demonstrativo
+    </div>
+</header>
 
-    <main class="container">
-        <article>
-            <span class="categoria">FICÇÃO</span>
+<main class="container">
 
-            <h2>Novo vírus fictício chamado "Paraochão" desperta atenção de pesquisadores</h2>
+    <section class="intro">
+        <span class="eyebrow">ASSISTENTE AUTOMOTIVO INTELIGENTE</span>
+        <h2>Entenda o que está acontecendo<br>com seu veículo.</h2>
+        <p>Selecione seu veículo e descreva o problema para iniciar uma investigação orientada.</p>
+    </section>
 
-            <p class="data">
-                Publicado em 26 de junho de 2026
-            </p>
+    <section class="progress">
+        <div class="progress-step active" data-step="1">
+            <span>1</span><small>Veículo</small>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="2">
+            <span>2</span><small>Problema</small>
+        </div>
+        <div class="progress-line"></div>
+        <div class="progress-step" data-step="3">
+            <span>3</span><small>Diagnóstico</small>
+        </div>
+    </section>
 
-            <img src="https://picsum.photos/900/450?random=1" alt="Imagem ilustrativa">
+    <section class="panel" id="vehiclePanel">
+        <div class="panel-heading">
+            <div>
+                <span class="eyebrow">ETAPA 01</span>
+                <h3>Identifique seu veículo</h3>
+                <p>Informe os dados para personalizar a investigação.</p>
+            </div>
+            <div class="heading-icon">01</div>
+        </div>
 
-            <p>
-                <strong>Atenção:</strong> Esta notícia é inteiramente fictícia e foi criada apenas
-                para fins de estudo, programação e demonstração.
-            </p>
+        <div class="form-grid">
 
-            <p>
-                Segundo esta história fictícia, cientistas teriam identificado um novo vírus
-                chamado <strong>Paraochão</strong>, que teria sido observado inicialmente durante
-                pesquisas laboratoriais. A narrativa não representa acontecimentos reais.
-            </p>
+            <div class="field">
+                <label for="brand">Marca</label>
+                <select id="brand">
+                    <option value="Volkswagen">Volkswagen</option>
+                </select>
+            </div>
 
-            <p>
-                Na história, equipes internacionais estariam analisando o comportamento do
-                microrganismo fictício para compreender suas características e desenvolver
-                métodos de monitoramento, embora nenhuma informação apresentada corresponda
-                a fatos reais.
-            </p>
+            <div class="field">
+                <label for="bodyType">Tipo de veículo</label>
+                <select id="bodyType">
+                    <option value="">Selecione a carroceria</option>
+                    <option value="Hatch">Hatch</option>
+                    <option value="Sedã">Sedã</option>
+                    <option value="SUV">SUV</option>
+                    <option value="Picape">Picape</option>
+                    <option value="Perua">Perua</option>
+                </select>
+            </div>
 
-            <p>
-                Especialistas fictícios reforçam que qualquer semelhança com eventos reais é
-                mera coincidência e que informações sobre saúde devem sempre ser obtidas em
-                fontes oficiais.
-            </p>
+            <div class="field">
+                <label for="model">Modelo</label>
+                <select id="model" disabled>
+                    <option value="">Primeiro selecione a carroceria</option>
+                </select>
+            </div>
 
-            <button id="botao">Ler atualização</button>
+            <div class="field">
+                <label for="year">Ano</label>
+                <select id="year" disabled>
+                    <option value="">Selecione o modelo primeiro</option>
+                </select>
+            </div>
 
-            <div id="mensagem"></div>
-        </article>
-    </main>
+            <div class="field">
+                <label for="version">Versão</label>
+                <select id="version" disabled>
+                    <option value="">Selecione o ano primeiro</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label for="engine">Motor / Motorização</label>
+                <select id="engine" disabled>
+                    <option value="">Selecione a versão primeiro</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="selection-summary" id="vehicleSummary">
+            <span class="summary-icon">ⓘ</span>
+            <span>Preencha os campos acima para identificar seu veículo.</span>
+        </div>
+
+        <button class="primary-button" id="nextButton" disabled>
+            Continuar para o problema <span>→</span>
+        </button>
+    </section>
+
+    <section class="panel hidden" id="problemPanel">
+        <div class="panel-heading">
+            <div>
+                <span class="eyebrow">ETAPA 02</span>
+                <h3>O que está acontecendo?</h3>
+                <p>Descreva os sintomas apresentados pelo veículo.</p>
+            </div>
+            <div class="heading-icon">02</div>
+        </div>
+
+        <div class="selected-car" id="selectedCar"></div>
+
+        <div class="field">
+            <label for="problem">Descreva o problema</label>
+            <textarea id="problem" rows="5"
+                placeholder="Exemplo: Meu veículo começou a perder potência, apresenta um barulho diferente e acendeu uma luz no painel..."></textarea>
+        </div>
+
+        <div class="examples">
+            <span>Exemplos de problemas:</span>
+            <button class="example-chip" data-problem="O motor está falhando.">Motor falhando</button>
+            <button class="example-chip" data-problem="O veículo está perdendo potência.">Perda de potência</button>
+            <button class="example-chip" data-problem="O veículo apresenta um vazamento.">Vazamento</button>
+            <button class="example-chip" data-problem="O veículo está apresentando dificuldade para ligar.">Dificuldade para ligar</button>
+        </div>
+
+        <div class="button-row">
+            <button class="secondary-button" id="backVehicle">← Voltar</button>
+            <button class="primary-button" id="startChat">Iniciar investigação →</button>
+        </div>
+    </section>
+
+    <section class="panel hidden" id="chatPanel">
+        <div class="panel-heading">
+            <div>
+                <span class="eyebrow">ETAPA 03</span>
+                <h3>Investigação automotiva</h3>
+                <p>Conversa demonstrativa de investigação.</p>
+            </div>
+            <div class="ai-icon">AI</div>
+        </div>
+
+        <div class="vehicle-context" id="chatVehicle"></div>
+
+        <div class="chat-warning">
+            Esta é uma demonstração, não um diagnóstico mecânico real.
+            As respostas não substituem uma avaliação profissional.
+        </div>
+
+        <div class="chat-messages" id="chatMessages"></div>
+
+        <form class="chat-form" id="chatForm">
+            <input id="chatInput" type="text"
+                placeholder="Digite sua resposta..."
+                autocomplete="off">
+            <button type="submit" aria-label="Enviar mensagem">➤</button>
+        </form>
+
+        <button class="secondary-button restart-button" id="restart">
+            Começar uma nova investigação
+        </button>
+    </section>
 
     <footer>
-        <p>Site de exemplo - Conteúdo 100% fictício.</p>
+        <p>AutoDiagnóstico © 2026 · Projeto demonstrativo</p>
+        <p>Informações técnicas devem ser verificadas antes de qualquer reparo.</p>
     </footer>
 
-    <script src="script.js"></script>
+</main>
 
+<script src="script.js"></script>
 </body>
 </html>
